@@ -1,6 +1,3 @@
-interface Message {
-  
-}
 
 interface ChatMessageProps {
   role: string;
