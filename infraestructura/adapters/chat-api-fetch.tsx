@@ -14,7 +14,7 @@ class ChatApiFetch implements ChatApi {
   async sendMessage(messages: Message[]): Promise<Message> {
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/chatbot`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/conversation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ class ChatApiFetch implements ChatApi {
       }
   
       const responseData = await response.json();
-      const assistantResponse: Message = { role: responseData.role, content: responseData.content };
+      const assistantResponse: Message = { role: 'assistant', content: responseData.content };
       this.persistOnClientMessage.saveMessages([...messages, assistantResponse]);
       return assistantResponse;
     } catch (error) {
