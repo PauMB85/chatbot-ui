@@ -17,7 +17,7 @@ const ChatMessages: FC<ChatMessagesProps> = ({messages, isLoading}) => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col justify-end h-full">
       <div className="overflow-y-scroll">
         {messages.map((message, index) => (
           <div key={index}>

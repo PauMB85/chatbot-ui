@@ -1,6 +1,5 @@
+import ChatEmpty from "@/components/chat/chat-empty";
 import ChatInput from "@/components/chat/chat-input";
-import ChatLoader from "@/components/chat/chat-loader";
-import ChatMessage from "@/components/chat/chat-message";
 import ChatMessages from "@/components/chat/chat-messages";
 import ToastError from "@/components/toast/toast-error";
 import Message from "@/domain/message";
@@ -44,13 +43,13 @@ const Chatbot: FC = () => {
   }
 
   return (
-    <div className="flex flex-col justify-end">
-      <div className="flex-1 overflow-hidden">
-        <ChatMessages messages={messages} isLoading={isLoading}/>
-      </div>
+    <div className="flex flex-col h-full justify-between">
+      {messages.length === 0 && (<ChatEmpty />)}
+      {messages.length !== 0 && (<ChatMessages messages={messages} isLoading={isLoading}/>)}
       <ChatInput callApi={handleCallApi}/>
       {hasError && <ToastError>Ooops!</ToastError>}
     </div>
+
   )
 }
 
